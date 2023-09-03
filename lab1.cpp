@@ -83,7 +83,7 @@ Global::Global()
 	xres = 400;
 	yres = 200;
     w = 20.0f;
-    dir = 25.0f;
+    dir = 20.0f;
     pos[0] = 0.0f + w;
     pos[1] = yres / 2.0f;
 }
@@ -261,14 +261,6 @@ void physics()
 }
 void render()
 {
-	//
-    if(g.xres < 400){
-        glColor3f(1.0,0.0,0.0);
-    }else if(g.xres > 400){
-        glColor3f(0.0,0.0,255.0);
-    }else{
-        glColor3f(1.0,0.0,10.0);
-    }
 	glClear(GL_COLOR_BUFFER_BIT);
 	//Draw box.
 	glPushMatrix();
@@ -276,11 +268,14 @@ void render()
 //	glColor3ub(150, 160, 220);
     if(g.xres < 400){
          glColor3f(1.0,0.0,0.0);
-     }else if(g.xres > 400){
+     }else if(g.xres > 500){
          glColor3f(0.0,0.0,255.0);
      }else{
-         glColor3f(1.0,0.0,10.0);
+         glColor3ub(150,160,220);
      }
+    if(g.xres <= 40){
+        glPopMatrix();
+    }
 	glTranslatef(g.pos[0], g.pos[1], 0.0f);
 	glBegin(GL_QUADS);
 		glVertex2f(-g.w, -g.w);
